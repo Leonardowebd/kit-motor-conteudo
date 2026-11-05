@@ -1,0 +1,63 @@
+{
+ "nicho": "construtoras (exemplo real de pesquisa pública)",
+ "publico": "Dono de construtora que lança empreendimentos; às vezes ele mesmo vende.",
+ "consciencia": "solucao",
+ "dores": [
+  {
+   "texto": "dono-engenheiro preso na obra, sem tempo para o comercial",
+   "fonte": "https://youtu.be/6YP6HRi5abg 00:44"
+  },
+  {
+   "texto": "briga por preço; cliente pergunta 'quanto é o metro quadrado'",
+   "fonte": "https://youtu.be/VLn34k1T_bU 21:28"
+  }
+ ],
+ "glossario": [
+  {
+   "termo": "dono de construtora",
+   "fonte": "chamado de anúncio validado"
+  },
+  {
+   "termo": "lançamento",
+   "fonte": "entrevistas de CEOs (contagem)"
+  },
+  {
+   "termo": "empreendimento",
+   "fonte": "entrevistas de CEOs"
+  },
+  {
+   "termo": "cliente",
+   "fonte": "contagem em entrevistas"
+  },
+  {
+   "termo": "obra",
+   "fonte": "contagem em entrevistas"
+  },
+  {
+   "termo": "orçamento",
+   "fonte": "https://youtu.be/VLn34k1T_bU 20:02"
+  },
+  {
+   "termo": "mensalidade",
+   "fonte": "anúncio validado"
+  },
+  {
+   "termo": "marketing",
+   "fonte": "entrevistas"
+  }
+ ],
+ "proibidos": [
+  {
+   "termo": "lead",
+   "troca": "cliente / interessado",
+   "motivo": "palavra de agência (0–2 menções nos donos)"
+  },
+  {
+   "termo": "previsibilidade",
+   "troca": "(dizer o fato concreto)",
+   "motivo": "palavra de agência"
+  }
+ ],
+ "evitar": [],
+ "fatos": []
+}

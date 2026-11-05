@@ -1,0 +1,7 @@
+{ "id": "", "titulo": "", "cliente": "copy/clientes/<cliente>.json", "nicho": "copy/nichos/<nicho>.json", "briefing": "briefing.md",
+  "duracao": { "min": 20, "max": 40 }, "ritmo_ppm": 150, "gancho_max_palavras": 15,
+  "publico": { "avatar": "", "consciencia": "problema" },
+  "blocos": [ { "papel": "gancho", "itens": [ { "tipo": "cena", "texto": "" }, { "tipo": "tela", "texto": "" }, { "tipo": "fala", "texto": "", "origem": "glossario | referencia:<arquivo> | fato:<id> | hipotese", "b": "versão B opcional" } ] } ],
+  "ganchos_alternativos": [ { "texto": "", "pros": "", "contras": "" }, { "texto": "", "pros": "", "contras": "" } ],
+  "checklist": { "3cs": { "curiosidade": "", "clareza": "", "consequencia": "" }, "4ganchos": { "verbal": "", "textual": "", "visual": "", "micro": "" }, "cta": { "valor_antes": "", "comando": "" } },
+  "etapas": { "briefing": { "feito": "", "decisoes": "", "falta": "", "proximo": "" }, "publico": {}, "linguagem": {}, "mecanismo": {}, "prova": {}, "rascunho": {}, "auditoria": {} } }

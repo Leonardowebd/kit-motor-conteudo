@@ -1,0 +1,42 @@
+{
+ "cliente": "Exemplo Assessoria (FICTÍCIO)",
+ "nicho": "copy/nichos/construtoras-exemplo.json",
+ "oferta": {
+  "carro_chefe": "assessoria de marketing e vendas",
+  "inclui": [
+   "anúncios",
+   "site do empreendimento",
+   "treinamento de quem atende"
+  ],
+  "nao_vender_no_anuncio": [
+   "CRM avulso"
+  ],
+  "preco_modelo": "sem mensalidade, percentual da venda",
+  "risco_zero": "sem mensalidade",
+  "cta_destino": "formulário com filtro de verba"
+ },
+ "fatos": [
+  {
+   "id": "C-001",
+   "texto": "Inclui anúncios, site do empreendimento e treinamento",
+   "fonte": "sócio, exemplo",
+   "status": "confirmado"
+  },
+  {
+   "id": "C-002",
+   "texto": "Sem mensalidade; cobra percentual da venda",
+   "fonte": "sócio, exemplo",
+   "status": "confirmado"
+  },
+  {
+   "id": "C-003",
+   "texto": "Trabalhos reais para mostrar na tela",
+   "fonte": "—",
+   "status": "a-confirmar"
+  }
+ ],
+ "proibido_prometer": [
+  "garantia de venda",
+  "número de resultado sem case"
+ ]
+}

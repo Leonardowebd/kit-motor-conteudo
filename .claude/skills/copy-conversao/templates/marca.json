@@ -1,0 +1,3 @@
+{ "marca": "", "quem_fala": { "nome": "", "cargo": "" },
+  "tom": { "descricao": "", "exemplos": [] }, "proibidos_marca": [],
+  "visual": { "cores": [], "fontes": [] }, "plataformas": [] }

@@ -1,0 +1,4 @@
+{ "cliente": "", "nicho": "copy/nichos/<nicho>.json",
+  "oferta": { "carro_chefe": "", "inclui": [], "nao_vender_no_anuncio": [], "preco_modelo": "", "risco_zero": "", "cta_destino": "" },
+  "fatos": [ { "id": "C-001", "texto": "", "fonte": "", "status": "a-confirmar" } ],
+  "proibido_prometer": [] }

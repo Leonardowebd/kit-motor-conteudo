@@ -1,0 +1,28 @@
+{
+ "marca": "Exemplo Assessoria (FICTÍCIO)",
+ "quem_fala": {
+  "nome": "Fulano",
+  "cargo": "sócio"
+ },
+ "tom": {
+  "descricao": "direto e coloquial, sem gíria pesada (a testar A/B)",
+  "exemplos": [
+   "Dono de construtora, presta atenção nisso."
+  ]
+ },
+ "proibidos_marca": [
+  "garantia de venda"
+ ],
+ "visual": {
+  "cores": [
+   "#0D0D0D",
+   "#F6F6F6"
+  ],
+  "fontes": [
+   "Inter"
+  ]
+ },
+ "plataformas": [
+  "meta-ads"
+ ]
+}

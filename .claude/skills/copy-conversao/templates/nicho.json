@@ -1,0 +1,5 @@
+{ "nicho": "", "publico": "", "consciencia": "", "dores": [ { "texto": "", "fonte": "" } ],
+  "glossario": [ { "termo": "", "fonte": "" } ],
+  "proibidos": [ { "termo": "", "troca": "", "motivo": "" } ],
+  "evitar": [ { "termo": "", "motivo": "" } ],
+  "fatos": [ { "id": "N-001", "texto": "", "fonte": "", "status": "a-confirmar" } ] }
