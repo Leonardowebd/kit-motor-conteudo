@@ -1,3 +1,3 @@
 { "name": "skill-copy-conversao", "private": true, "type": "module",
-  "scripts": { "test": "node --test .claude/skills/copy-conversao/scripts/", "onboarding": "node .claude/skills/copy-conversao/scripts/onboarding-check.mjs", "verificar": "node .claude/skills/copy-conversao/scripts/verificar.mjs" },
+  "scripts": { "test": "node --test .claude/skills/copy-conversao/scripts/*.test.mjs", "onboarding": "node .claude/skills/copy-conversao/scripts/onboarding-check.mjs", "verificar": "node .claude/skills/copy-conversao/scripts/verificar.mjs" },
   "dependencies": { "playwright": "1.48.2" } }
