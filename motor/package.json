@@ -1,0 +1,15 @@
+{
+  "name": "motor-conteudo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "bash setup.sh",
+    "test": "node --test",
+    "editor": "node editor/servidor.mjs"
+  },
+  "dependencies": {
+    "@ffprobe-installer/ffprobe": "2.1.2",
+    "ffmpeg-static": "5.2.0",
+    "playwright": "1.48.2"
+  }
+}

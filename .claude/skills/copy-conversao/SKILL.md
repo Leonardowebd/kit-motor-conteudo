@@ -1,25 +1,46 @@
 ---
 name: copy-conversao
-description: Escreve e revisa copy de anúncio e roteiro (vídeo, Reels, carrossel) para conversão, com base em fatos, linguagem real do público e mecanismos de referências medidas. Use para criar, revisar ou corrigir copy, gancho, CTA ou roteiro de anúncio, para qualquer nicho ou cliente. Começa por um onboarding obrigatório (spec-driven) e só entrega copy que passa no verificador e no agente revisor-copy.
+description: Método para escrever copy de anúncio e roteiro de vídeo/carrossel pensada para conversão, cliques e engajamento, com base em fatos, linguagem real do público e mecanismos de referências medidas. Use sempre que for criar, revisar ou corrigir copy, gancho, CTA ou roteiro de anúncio, para qualquer nicho ou cliente. Produz um copy.json que precisa passar em motor/copy/verificar.mjs.
 ---
 
-# Copy para conversão
+# Copy para conversão (método do motor)
 
-**Não é fôrma; é processo com prova.** Leia antes: `CLAUDE.md` do projeto (regras 1–5), `docs/processo-copy-robusta.md`, `docs/checklist.md`, `docs/banco-de-dados.md`.
+**Não é fôrma.** É processo com prova. Regras-mãe: `AGENTS.md` itens 10–13 e `.spec/constituicao.md` P-010..P-012.
 
-## Fluxo obrigatório
-1. **Onboarding (gate):** `node .claude/skills/copy-conversao/scripts/onboarding-check.mjs`. Se falhar, faça as perguntas de `docs/onboarding.md` ao usuário (use AskUserQuestion quando houver opções; uma rodada por bloco), grave as respostas nos JSON de `copy/` e rode de novo. **Não escreva copy com o gate falhando.** "Não sei" vira `a-confirmar`, nunca invenção.
-2. **Pasta do trabalho:** `trabalhos/<cliente>/<AAAA-MM-DD>-<peca>/` com `briefing.md` (palavras literais do pedido) e `copy.json` (a partir de `templates/copy.json`).
-3. **Etapas** (briefing → publico → linguagem → mecanismo → prova → rascunho → auditoria), cada uma com handoff no `copy.json` e em `handoff.md`.
-4. **Verificar:** `node .claude/skills/copy-conversao/scripts/verificar.mjs <copy.json> --html` até zero ERRO.
-5. **Revisar:** chamar o agente `revisor-copy` (independente). Corrigir voltando à etapa que errou.
-6. **Mostrar ao usuário:** `node .claude/skills/copy-conversao/scripts/anotar.mjs servir <pasta>` e abrir `http://127.0.0.1:4320/`. Ele anota em balões; leia com `anotar.mjs ler <pasta>` antes de corrigir.
-7. **Aprender:** erro corrigido pelo usuário → lição em `copy/aprendizados.md`; regra checável → teste novo em `scripts/verificar.test.mjs`; peça publicada → ficha em `copy/resultados/`.
+## Entradas obrigatórias (ler antes de escrever)
+1. `Base/roteiro-copy/processo-copy-robusta.md`: as 8 etapas e a regra de handoff.
+2. `Base/roteiro-copy/metodo.md`: checklist (3 C's, 4 ganchos, storytelling, CTA em 4 passos).
+3. Nicho: `Base/copy/nichos/<nicho>.json` (proibidos, glossário com fonte, fatos do setor).
+4. Cliente: `Base/copy/clientes/<cliente>.json` (oferta, fatos com status, o que é proibido prometer).
+5. Referências medidas: `Base/engenharia-reversa/*.md`, `Base/roteiro-copy/estudo-fonetico.md`.
+6. Handoff anterior do cliente: `Base/roteiro-copy/handoff-<cliente>.md` e `handoff.md` da pasta do trabalho.
 
-## Pesquisa (ferramentas)
-- **Anúncios ativos** (Biblioteca da Meta, sem login): `node .claude/skills/copy-conversao/scripts/anuncios.mjs <pasta> --midia all "busca"` · `--contar` só conta · aceita link de página ordenada por impressões. Vídeos: `anuncios-baixar.mjs <pasta> "<regex anunciante>"` (precisa do Google Chrome instalado).
-- **Voz do cliente** (YouTube, legendas): `uvx yt-dlp --skip-download --write-auto-subs --sub-langs "pt.*" --sub-format vtt -o "%(id)s" <url>` → `python3 .claude/skills/copy-conversao/scripts/legendas.py <pasta> <saida.md> palavra1 palavra2`.
-- **Medidas de fala** (opcional): `fonetica.py` (precisa de `numpy librosa` e ffmpeg).
+## Saída
+Uma pasta de trabalho com:
+- **`briefing.md`:** as palavras do cliente/criador, literais. Só para checar eco, nunca para virar texto.
+- **`copy.json`:** blocos (gancho, A, virada, B, CTA) com itens `fala | narracao | cena | tela | ia`. Cada fala tem `origem` (`glossario`, `referencia:<estudo>`, `fato:<id>` ou `hipotese`) e, se houver, a versão `b` de tom. Também traz `publico.consciencia`, `checklist`, `ganchos_alternativos` (≥2 com prós e contras) e `etapas` (handoff de cada etapa).
+- **`handoff.md`:** um bloco por etapa concluída.
+- Página: `node motor/copy/verificar.mjs <copy.json> --html`.
 
-## O que o código não pega (o revisor checa)
-Frase 1 vende a 2? · fala com a dor do nível de consciência declarado? · usa só palavras do público? · copia mecanismo e não texto? · prova real ou estrutura de compensação? · encenação não parece cliente real? · tom sem dado vira teste A/B.
+## Formato do copy.json (mínimo)
+```json
+{ "id": "", "titulo": "", "cliente": "Base/copy/clientes/x.json", "nicho": "Base/copy/nichos/y.json", "briefing": "briefing.md",
+  "duracao": {"min": 40, "max": 60}, "ritmo_ppm": 180, "gancho_max_palavras": 15,
+  "publico": {"avatar": "", "consciencia": "inconsciente|problema|solucao|produto|total"},
+  "blocos": [{"papel": "gancho", "itens": [{"tipo": "fala", "texto": "", "origem": "", "b": ""}]}],
+  "ganchos_alternativos": [{"texto": "", "pros": "", "contras": ""}],
+  "checklist": {"3cs": {"curiosidade": "", "clareza": "", "consequencia": ""}, "4ganchos": {"verbal": "", "textual": "", "visual": "", "micro": ""}, "cta": {"valor_antes": "", "comando": ""}},
+  "etapas": {"briefing": {"feito": "", "decisoes": "", "falta": "", "proximo": ""}, "publico": {}, "linguagem": {}, "mecanismo": {}, "prova": {}, "rascunho": {}, "auditoria": {}} }
+```
+
+## Princípios que o código não pega (o revisor checa)
+- A frase 1 vende a 2? A 2 vende a 3? (`.claude/skills/principios-conteudo`)
+- O público está no nível de consciência declarado? Fala da dor dele, com as palavras dele.
+- O mecanismo da referência foi copiado, e não o texto?
+- Sem prova, a estrutura compensa (risco zero real, processo verificável) em vez de inventar?
+- Tom: sem dado, testar A × B; não decidir no escuro.
+
+## Aprender
+- Erro apontado pelo criador → lição em `docs/aprendizados.md`, com evidência.
+- Se o erro virar regra checável → novo teste em `motor/copy/verificar.test.mjs`.
+- Resultado publicado → ficha de métricas (feature futura `resultados`). Técnica só vira "validada" com dado.

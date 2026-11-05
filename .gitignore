@@ -1,9 +1,11 @@
 node_modules/
+.venv/
+conteudo.config.json
+motor/marca/perfil.json
 *.mp4
+*.mov
+*.wav
 *.mp3
 *.ogg
-*.wav
 .DS_Store
-trabalhos/*/
-!trabalhos/_exemplo/
 anotacoes/

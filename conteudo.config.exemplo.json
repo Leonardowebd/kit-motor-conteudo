@@ -1,0 +1,3 @@
+{ "acervo": "/caminho/para/o/seu/acervo",
+  "identidade": "Identidade",
+  "_nota": "acervo = pasta das mídias (RAW, referências, fontes, finalizados) FORA do git. Copie para conteudo.config.json e ajuste." }

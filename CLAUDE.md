@@ -1,8 +1,4 @@
-# Projeto de copy (skill copy-conversao)
+@AGENTS.md
 
-Regras deste projeto (valem para qualquer agente):
-1. **Só fatos.** A única verdade são fatos, métricas e técnicas validadas; o resto é hipótese (marcada) ou `a-confirmar`. Se um pedido não tiver base, diga e proponha teste — não concorde por concordar.
-2. **Briefing não é texto.** O que o cliente/usuário diz é intenção, restrição ou fato; nunca vai literal para a peça. A linguagem vem do público, com fonte (`copy/nichos/`).
-3. **Copy segue `.claude/skills/copy-conversao/SKILL.md`:** onboarding obrigatório → etapas → verificador limpo → agente `revisor-copy`.
-4. **Aprender e passar o bastão em toda etapa:** handoff por etapa; erro corrigido vira lição em `copy/aprendizados.md`; regra checável vira teste.
-5. **Robustez antes de velocidade.** Corrigir = voltar à etapa que errou e reescrever; nunca trocar palavras por substituição automática.
+> **REGRA ABSOLUTA E IMUTÁVEL (criador, 2026-11-04):** a única verdade são os fatos; tudo fora disso é especulação. Nos norteamos por fatos, métricas e técnicas validadas. Todo texto separa fato (com fonte), hipótese (marcada) e `[CONFIRMAR]`. Sem número, prazo, capacidade de produto ou "a maioria" sem fonte. Se uma decisão do criador não tiver base, dizer e propor o teste, em vez de concordar.
+

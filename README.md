@@ -1,81 +1,84 @@
-# copy-conversao · skill para Claude Code (versão de TESTE)
+# Kit Motor de Conteúdo · Claude Code (versão de TESTE)
 
-Sistema para gerar **copy de anúncio e roteiro pensada para conversão** com Claude Code, baseada em **fatos**, **linguagem real do público** e **mecanismos de referências medidas**, não em "criatividade" solta. Nasceu de um caso real (anúncio para donos de construtora) e de vários erros corrigidos, que viraram regras checadas por código.
+Sistema completo para produzir conteúdo e anúncios com Claude Code, **baseado em fatos, dados e referências medidas**:
+**pesquisa → copy/roteiro → imagem com IA → carrossel → vídeo/Reels → publicar e medir**, com agentes, verificadores em código e aprendizado registrado a cada etapa.
 
-> ⚠️ Não é a versão definitiva. É para testar e devolver feedback.
+> ⚠️ Não é a versão definitiva. Feito para testar e devolver feedback.
 
-## O que vem no pacote
-| Peça | O que faz |
+## O que vem
+| Trilho | Peças |
 |---|---|
-| **Skill** `.claude/skills/copy-conversao/` | o método: onboarding obrigatório, 7 etapas com handoff, checklist, ferramentas de pesquisa |
-| **Agente `copywriter`** | escreve seguindo a skill; nunca se autoaprova |
-| **Agente `revisor-copy`** | revisor independente e cético; aprova ou reprova com motivos |
-| **Verificador** `scripts/verificar.mjs` | reprova por código: eco do briefing, jargão proibido do nicho, número sem fato confirmado, tempo fora da faixa, frase sem origem, checklist ausente, etapa sem handoff |
-| **Gate de onboarding** `scripts/onboarding-check.mjs` | bloqueia a criação de copy enquanto faltar resposta obrigatória (estilo spec-driven) |
-| **Balões de anotação** `scripts/anotar.mjs` | você anota em cima do texto no navegador; o agente lê as notas antes de corrigir |
-| **Pesquisa** `anuncios.mjs`, `anuncios-baixar.mjs`, `legendas.py`, `fonetica.py` | Biblioteca de Anúncios da Meta (sem login), voz do cliente por legendas do YouTube, medidas de fala |
-| **Banco de dados** `copy/` | identidade, nichos, clientes, referências, voz do cliente, resultados, aprendizados |
+| **Pesquisa** | `motor/pesquisa/`: Instagram (Reels com views e outliers), Biblioteca de Anúncios da Meta (ranking e vídeos), Pinterest, legendas do YouTube (voz do cliente), engenharia reversa de vídeo, captura de telas em desktop, gravação de tela, métricas de imagem. Agentes `pesquisador` e `engenheiro-reverso` |
+| **Copy** | skill `copy-conversao`, agentes `copywriter` + `revisor-copy`, verificador (`motor/copy/verificar.mjs`), anotações em balão (`motor/copy/anotar.mjs`) |
+| **Carrossel** | `motor/carrossel/` (JSON → PNG 1080×1350 validado na marca, capas a partir de referências e de imagem de impacto), agente `carrossel` |
+| **Vídeo / Reels** | `motor/video/` (transcrição, corte de silêncio e regravação, alinhamento, legenda, olhar/bastidor, recorte da pessoa, prévia) e `motor/render/` (Formato A, Formato B, cenas sem RAW, post animado, B-roll, temas de UI, plano de som), editor visual (`motor/editor/`) |
+| **Imagem com IA** | regras e fluxo (Pinterest → prompt → modelo com referências reais), cliente OpenArt (`motor/imagem/openart.mjs`); geração via MCP (Magnific/Flow) |
+| **Processo** | `AGENTS.md` (regras), `.spec/` (constituição + specs com critérios de aceite), skill `principios-conteudo`, agente `escrivao` (documenta decisões e lições) |
+| **Banco** | `Base/` (conhecimento: marca, formatos, perícia, referências, nichos, clientes, resultados) + acervo de mídias fora do git |
 
 ## Instalação passo a passo
-**Requisitos:** [Claude Code](https://docs.claude.com/claude-code), Node.js 20+, git. Opcionais: Google Chrome (baixar vídeos de anúncios), [uv](https://docs.astral.sh/uv/) (para `uvx yt-dlp`), Python 3 com `numpy librosa` e ffmpeg (medidas de fala).
-
+**Requisitos:** macOS (Apple Silicon recomendado: transcrição local `mlx-whisper` e recorte com Vision), [Claude Code](https://docs.claude.com/claude-code), Node.js 20+, Python 3, git. Opcionais: Google Chrome (vídeos de anúncios), [uv](https://docs.astral.sh/uv/) (`uvx yt-dlp`).
 ```bash
-# 1. clonar (o repositório já é um projeto pronto)
-git clone <url-deste-repo> meu-projeto-copy && cd meu-projeto-copy
-
-# 2. dependências
-npm install
-npx playwright install chromium
-
-# 3. conferir que está tudo de pé
-npm test                 # testes do verificador e do onboarding
-npm run onboarding       # deve dizer COMPLETO (dados de exemplo fictícios)
-npm run verificar -- trabalhos/_exemplo/2026-11-04-anuncio/copy.json --html
-
-# 4. abrir o Claude Code NA RAIZ do projeto (importante: os agentes do projeto só aparecem assim)
-claude
+git clone <url-deste-repo> meu-motor && cd meu-motor
+npm run instalar                       # npm install + Chromium do Playwright + venv com mlx-whisper (motor/setup.sh)
+npm run criar-acervo -- ~/MeuAcervo    # estrutura padrão das mídias (fora do git)
+cp conteudo.config.exemplo.json conteudo.config.json      # aponte "acervo" para ~/MeuAcervo
+cp motor/marca/perfil.exemplo.json motor/marca/perfil.json
+# fontes padrão (gratuitas, fontshare.com): Clash Display e Satoshi → ~/MeuAcervo/Identidade/ClashDisplay_Complete/Fonts/WEB/fonts e Satoshi_Complete/Fonts/WEB/fonts
+npm run onboarding                     # lista o que falta (INCOMPLETO até responder tudo)
+npm test                               # testes do motor (os de identidade só passam com acervo + fontes)
+claude                                 # abra o Claude Code NA RAIZ (agentes e skills do projeto só aparecem assim)
 ```
-**Já tem um projeto?** Copie `.claude/skills/copy-conversao/`, `.claude/agents/copywriter.md`, `.claude/agents/revisor-copy.md`, `CLAUDE.md` (ou junte as regras ao seu), `copy.config.json` e a pasta `copy/` para a raiz dele. Para usar a skill em todos os projetos, copie a pasta da skill para `~/.claude/skills/` (os comandos rodam a partir da raiz do projeto onde estão `copy/` e `copy.config.json`).
+**Conectar ferramentas (MCP) — opcional, para gerar imagem/vídeo:** adicione o servidor MCP do provedor que você usa (ex.: Magnific, Google Flow) com `claude mcp add …` conforme a documentação dele e confira com `/mcp` dentro do Claude Code. OpenArt usa `OPENART_TOKEN` (ou login da CLI). **Toda geração paga mostra o preço e espera aprovação.**
 
 ## Primeiro uso (spec-driven)
-1. **Apague os dados de exemplo** de `copy/identidade`, `copy/nichos`, `copy/clientes`, `copy/referencias` e `trabalhos/_exemplo` (ou mantenha para comparar).
-2. No Claude Code: *"Use a skill copy-conversao. Quero um anúncio para <cliente>."*
-3. O agente roda `npm run onboarding`. Enquanto estiver **INCOMPLETO**, ele **não escreve copy**: faz as perguntas obrigatórias de `docs/onboarding.md`, em 4 blocos:
-   - **Identidade:** marca, quem fala, tom, proibições, visual, plataformas.
-   - **Público:** nicho, quem decide, nível de consciência, dores com fonte, glossário com fonte.
-   - **Oferta e fatos:** carro-chefe, o que inclui, modelo de preço, risco zero real, CTA e filtro, fatos com status, o que é proibido prometer.
-   - **Referências e métricas:** anúncio que já funcionou, métrica decisora, verba de teste.
-   - Resposta "não sei" vira `a-confirmar`: pendência visível, nunca invenção.
-4. Com o gate verde, o `copywriter` cria `trabalhos/<cliente>/<data>-<peca>/` e percorre as etapas com handoff. Depois vêm o verificador e o `revisor-copy`.
-5. Veja e anote: `node .claude/skills/copy-conversao/scripts/anotar.mjs servir trabalhos/<cliente>/<peca>` → abra `http://127.0.0.1:4320/`, selecione um trecho e escreva no balão.
-6. Peça a correção. O agente lê as notas, volta à etapa que errou e reescreve.
+1. No Claude Code: *"Vamos fazer o onboarding do motor."* O agente roda `npm run onboarding` e faz as perguntas obrigatórias de `docs/ONBOARDING.md` em 4 blocos:
+   - **Identidade:** acervo, cores, fontes, tom, rosto, perfil, motores de IA e aprovação de crédito.
+   - **Público:** nicho, quem decide, nível de consciência, dores e glossário com fonte.
+   - **Oferta e fatos:** carro-chefe, preço, risco zero real, CTA, fatos com status, o que é proibido prometer.
+   - **Referências e métricas:** peças que já funcionaram e a métrica que decide.
+2. Com o gate verde, peça uma peça. Exemplos:
+   - "pesquise anúncios ativos do meu nicho e faça a engenharia reversa do mais duplicado";
+   - "escreva a copy do anúncio";
+   - "monte o carrossel sobre X";
+   - "edite o RAW Y no Formato A".
+3. Revise no navegador (balões de anotação na copy; prévia leve no vídeo; prancha no carrossel). O agente lê as suas notas e corrige voltando à etapa que errou.
+4. Depois de publicar, registre as métricas em `Base/copy/resultados/`. É isso que transforma hipótese em técnica validada.
 
-## Por que o banco de dados importa
-Leia `docs/banco-de-dados.md`. Em resumo:
-- **Sem fonte não há verdade.** Fato sem status é tratado como hipótese.
-- **Separar método × nicho × cliente × peça** permite reaproveitar tudo ao mudar de cliente.
-- **A ficha de resultado de cada peça** é o que transforma hipótese em técnica validada.
-- **O padrão é o mesmo para todos.** Dados de várias pessoas e nichos podem somar (anonimizados).
+## Regras que fazem o sistema funcionar (`AGENTS.md`)
+- **Só fatos:** número, promessa ou "a maioria" só com fonte. O resto é hipótese marcada ou `a-confirmar`.
+- **Briefing não é texto:** a linguagem vem do público, com fonte.
+- **Texto em imagem é sempre código,** nunca gerado pela IA de imagem.
+- **Robustez antes de velocidade:** corrigir é voltar à etapa e reescrever.
+- **Aprender e passar o bastão em toda etapa:** handoff por etapa, e todo erro vira lição com evidência.
 
-## Estrutura de pastas (padrão, modular)
+## Por que o banco de dados é o centro
+Leia `docs/BANCO-DE-DADOS.md`. Em resumo:
+- Cada fato, termo e referência tem **fonte e status**.
+- **Método, nicho, cliente e peça** ficam separados.
+- **Mídias ficam no acervo e o conhecimento no git.**
+- **Cada resultado medido volta para o banco.**
+- Sem isso, cada peça recomeça do zero e o agente inventa.
+
+## Estrutura de pastas
 ```
-.claude/
-  skills/copy-conversao/   SKILL.md · docs/ · scripts/ · templates/
-  agents/                  copywriter.md · revisor-copy.md
-CLAUDE.md                  regras do projeto (só fatos, briefing ≠ texto, processo, handoff, robustez)
-copy.config.json           pastas configuráveis
-copy/                      ← BANCO DE DADOS
-  identidade/ nichos/ clientes/ referencias/ voz-cliente/ resultados/ aprendizados.md
-trabalhos/<cliente>/<AAAA-MM-DD>-<peca>/
-  briefing.md copy.json copy.html handoff.md revisao.md anotacoes/
+AGENTS.md · CLAUDE.md          regras e mapa (todo agente lê)
+conteudo.config.json           acervo + pasta de identidade (copiar do .exemplo)
+.claude/agents/                pesquisador · engenheiro-reverso · copywriter · revisor-copy · carrossel · post-x · escrivao
+.claude/skills/                copy-conversao · principios-conteudo
+.spec/                         constituição + features (copy, carrossel, video) com critérios de aceite
+Base/                          banco de conhecimento (ver docs/BANCO-DE-DADOS.md)
+motor/                         código: pesquisa · copy · carrossel · video · render · imagem · editor · marca
+docs/                          ONBOARDING · FLUXOS · BANCO-DE-DADOS · aprendizados · decisoes/
+<acervo>/ (fora do git)        Identidade · Conteudo/{Personagem,Videos,Carrossel,Imagens,Clientes} · SFX Audio
 ```
-Cada módulo é trocável: outro nicho é só um novo `copy/nichos/<nicho>.json`; outro cliente, um novo `copy/clientes/<cliente>.json`. O método não muda.
+Cada módulo é trocável: outra marca é só um novo `MARCA.md`, `perfil.json`, fontes e cores; outro nicho, um novo `Base/copy/nichos/`; outro cliente, um novo `Base/copy/clientes/`.
 
 ## Limites conhecidos
-- **Contagens da Biblioteca da Meta:** buscas por palavra-chave têm ruído. "Dias no ar × versões" é indicador indireto, não métrica de resultado.
-- **Tickets e números de portais:** são ordem de grandeza. Confirme antes de usar em copy.
-- **Agentes:** só aparecem com o Claude Code aberto na raiz do projeto.
-- **Coleta:** respeite os termos das plataformas. As ferramentas leem só páginas públicas, sem login, para pesquisa interna.
+- Feito e testado em macOS com Apple Silicon. Transcrição (`mlx-whisper`) e recorte (Vision) são específicos do Mac.
+- Os estudos em `Base/engenharia-reversa/` analisam peças públicas de terceiros. Copie só o mecanismo, nunca texto, marca ou rosto.
+- Contagens da Biblioteca da Meta são indicadores indiretos, não métricas de resultado.
+- As ferramentas de pesquisa leem só páginas públicas, sem login. Respeite os termos das plataformas.
 
 ## Feedback
-Abra uma issue com: o que você pediu, o que saiu, o que o verificador ou o revisor deixaram passar e o que você corrigiu. Cada correção vira regra ou teste.
+Abra uma issue com: o que você pediu, o que saiu, o que os verificadores ou o revisor deixaram passar e o que você corrigiu.

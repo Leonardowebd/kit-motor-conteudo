@@ -1,3 +1,9 @@
-{ "name": "skill-copy-conversao", "private": true, "type": "module",
-  "scripts": { "test": "node --test .claude/skills/copy-conversao/scripts/*.test.mjs", "onboarding": "node .claude/skills/copy-conversao/scripts/onboarding-check.mjs", "verificar": "node .claude/skills/copy-conversao/scripts/verificar.mjs" },
-  "dependencies": { "playwright": "1.48.2" } }
+{ "name": "kit-motor-conteudo", "private": true, "type": "module",
+  "scripts": {
+    "instalar": "cd motor && bash setup.sh",
+    "criar-acervo": "node motor/criar-acervo.mjs",
+    "onboarding": "node motor/onboarding.mjs",
+    "test": "cd motor && node --test */*.test.mjs",
+    "verificar-copy": "node motor/copy/verificar.mjs",
+    "editor": "node motor/editor/servidor.mjs"
+  } }

@@ -1,0 +1,31 @@
+/* Identidade — tokens de Base/MARCA.md.
+   As fontes NÃO ficam no repo (licença ITF FFL proíbe redistribuição):
+   {{FONTES_CLASH}} e {{FONTES_SATOSHI}} são trocados em runtime pelo caminho
+   do acervo (conteudo.config.json → acervo/Identidade/.../Fonts/WEB/fonts). */
+:root {
+  --azul: #0035D4;
+  --gelo: #F6F6F6;
+  --limao: #B6FF59;
+  --preto: #0D0D0D;
+  /* derivados do azul e do preto (kit visual v2, aprovado em 2026-10-31): fundo noite, vidro, brilho */
+  --noite: #03050C;
+  --vidro-1: #0A0F1F;
+  --vidro-2: #070A14;
+  --azul-claro: #4D7BFF;
+  --azul-gelo: #A5C4FF;
+  --azul-fundo: #00197A;
+  --fonte-mono: 'SF Mono', ui-monospace, Menlo, monospace;
+  --fonte-titulo: 'Clash Display', sans-serif;
+  --fonte-texto: 'Satoshi', sans-serif;
+}
+@font-face { font-family: 'Clash Display'; font-weight: 600; font-style: normal; font-display: block;
+  src: url('{{FONTES_CLASH}}/ClashDisplay-Semibold.woff2') format('woff2'); }
+@font-face { font-family: 'Clash Display'; font-weight: 700; font-style: normal; font-display: block;
+  src: url('{{FONTES_CLASH}}/ClashDisplay-Bold.woff2') format('woff2'); }
+@font-face { font-family: 'Satoshi'; font-weight: 500; font-style: normal; font-display: block;
+  src: url('{{FONTES_SATOSHI}}/Satoshi-Medium.woff2') format('woff2'); }
+@font-face { font-family: 'Satoshi'; font-weight: 700; font-style: normal; font-display: block;
+  src: url('{{FONTES_SATOSHI}}/Satoshi-Bold.woff2') format('woff2'); }
+@font-face { font-family: 'Satoshi'; font-weight: 900; font-style: normal; font-display: block;
+  src: url('{{FONTES_SATOSHI}}/Satoshi-Black.woff2') format('woff2'); }
+html, body { margin: 0; padding: 0; width: 1080px; height: 1920px; background: transparent; overflow: hidden; }

@@ -1,0 +1,111 @@
+{
+ "nicho": "incorporadoras (lançamentos)",
+ "publico": "Dono de construtora que lança empreendimentos (unidades, lançamento). Chamado validado: \"Dono de construtora\".",
+ "estado": "glossário INICIAL a partir de 9 entrevistas de CEOs (contagem em voz-cliente.md).",
+ "evidencia": "Conteudo/Estudos/voz-cliente-construtoras/voz-cliente.md",
+ "proibidos": [
+  {
+   "termo": "lead quente",
+   "troca": "quem já está decidindo",
+   "motivo": "conceito interno"
+  },
+  {
+   "termo": "nivel de consciencia",
+   "troca": "(não citar)",
+   "motivo": "conceito interno"
+  }
+ ],
+ "glossario": [
+  {
+   "termo": "corretor",
+   "fonte": "contagem: 40 (5T0OTjahWVk Holos CEO), 56 (Rw_7BdLczeQ), 11 (qgmUnlwRhG8 Benx)"
+  },
+  {
+   "termo": "plantão",
+   "fonte": "contagem: 6 (5T0OTjahWVk), 17 (Rw_7BdLczeQ); https://youtu.be/5T0OTjahWVk 17:32 \"eu ficava no plantão o dia inteiro\""
+  },
+  {
+   "termo": "stand",
+   "fonte": "https://youtu.be/0evtb3jGmlE 31:26 \"ter um stand no próprio empreendimento\""
+  },
+  {
+   "termo": "decorado",
+   "fonte": "contagem: 7 (5T0OTjahWVk)"
+  },
+  {
+   "termo": "velocidade de vendas",
+   "fonte": "https://youtu.be/5T0OTjahWVk 09:53 \"o principal no nosso segmento é velocidade de vendas\""
+  },
+  {
+   "termo": "lançamento",
+   "fonte": "contagem: 28 (0evtb3jGmlE), 13 (5T0OTjahWVk)"
+  },
+  {
+   "termo": "VGV",
+   "fonte": "contagem: 11 (0evtb3jGmlE)"
+  },
+  {
+   "termo": "repasse",
+   "fonte": "https://youtu.be/5T0OTjahWVk 00:01 \"venda pra mim é repasse\""
+  },
+  {
+   "termo": "imobiliárias",
+   "fonte": "https://youtu.be/0evtb3jGmlE 27:13 \"pros corretores e as imobiliárias locais validarem\""
+  },
+  {
+   "termo": "time comercial",
+   "fonte": "https://youtu.be/5T0OTjahWVk 25:56 \"o comercial que é tanto vendas quanto marketing\""
+  },
+  {
+   "termo": "dono de construtora",
+   "fonte": "áudios validados (Base/engenharia-reversa/audios-validados-construtora.md)"
+  },
+  {
+   "termo": "lançamento",
+   "fonte": "áudios validados (Base/engenharia-reversa/audios-validados-construtora.md)"
+  },
+  {
+   "termo": "empreendimento",
+   "fonte": "áudios validados (Base/engenharia-reversa/audios-validados-construtora.md)"
+  },
+  {
+   "termo": "unidades",
+   "fonte": "áudios validados (Base/engenharia-reversa/audios-validados-construtora.md)"
+  },
+  {
+   "termo": "mensalidade",
+   "fonte": "áudios validados (Base/engenharia-reversa/audios-validados-construtora.md)"
+  },
+  {
+   "termo": "estrutura de marketing e vendas",
+   "fonte": "áudios validados (Base/engenharia-reversa/audios-validados-construtora.md)"
+  },
+  {
+   "termo": "captação",
+   "fonte": "áudios validados (Base/engenharia-reversa/audios-validados-construtora.md)"
+  },
+  {
+   "termo": "site",
+   "fonte": "áudios validados (Base/engenharia-reversa/audios-validados-construtora.md)"
+  },
+  {
+   "termo": "páginas",
+   "fonte": "áudios validados (Base/engenharia-reversa/audios-validados-construtora.md)"
+  },
+  {
+   "termo": "produto",
+   "fonte": "áudios validados (Base/engenharia-reversa/audios-validados-construtora.md)"
+  }
+ ],
+ "evitar": [
+  {
+   "termo": "lead",
+   "motivo": "0–1 menção nos CEOs (exceto episódio de consultor de vendas: 9)"
+  },
+  {
+   "termo": "previsibilidade",
+   "motivo": "1 menção em 9 CEOs, sobre juros/ciclo, não sobre vendas"
+  }
+ ],
+ "fatos": []
+}

@@ -1,0 +1,130 @@
+{
+ "nicho": "construtoras de obra (casa/obra sob encomenda; o cliente final tem terreno)",
+ "publico": "DONO de construtora de obra. Muitas vezes é engenheiro, vende ele mesmo ou tem \"um comercial\"; nem sempre tem corretor ou time de vendas.",
+ "estado": "glossário INICIAL (n=2 donos: VLn34k1T_bU e 6YP6HRi5abg) + contagem em 14 entrevistas. Ampliar com conversas de venda da Cliente.",
+ "proibidos": [
+  {
+   "termo": "corretor",
+   "troca": "quem vende / a sua construtora / você",
+   "motivo": "jargão de imobiliária; nem toda construtora tem corretor (criador, 2026-11-04)"
+  },
+  {
+   "termo": "corretora",
+   "troca": "quem vende / a sua construtora / você",
+   "motivo": "idem"
+  },
+  {
+   "termo": "plantao",
+   "troca": "o seu comercial / a sua agenda",
+   "motivo": "jargão de imobiliária (criador, 2026-11-04)"
+  },
+  {
+   "termo": "stand",
+   "troca": "obra / escritório",
+   "motivo": "jargão de imobiliária (criador, 2026-11-04)"
+  },
+  {
+   "termo": "decorado",
+   "troca": "projeto / obra",
+   "motivo": "jargão de imobiliária (criador, 2026-11-04)"
+  },
+  {
+   "termo": "imobiliaria",
+   "troca": "a sua construtora / incorporadora",
+   "motivo": "público é a construtora, não a imobiliária (criador, 2026-11-04)"
+  },
+  {
+   "termo": "nivel de consciencia",
+   "troca": "(não citar; guia a copy nos bastidores)",
+   "motivo": "conceito interno (criador, 2026-11-04)"
+  },
+  {
+   "termo": "lead",
+   "troca": "cliente / interessado",
+   "motivo": "dono de construtora de obra não usa (contagem em voz-cliente.md) e o criador vetou"
+  }
+ ],
+ "glossario": [
+  {
+   "termo": "cliente",
+   "fonte": "contagem: 70 menções (VLn34k1T_bU), 13 em 20 min (6YP6HRi5abg); dono não diz \"lead\""
+  },
+  {
+   "termo": "obra",
+   "fonte": "contagem: 44 (VLn34k1T_bU), 49 em 20 min (6YP6HRi5abg)"
+  },
+  {
+   "termo": "orçamento",
+   "fonte": "https://youtu.be/VLn34k1T_bU 20:02 \"apresenta um orçamento pelo WhatsApp\""
+  },
+  {
+   "termo": "fechar com a gente",
+   "fonte": "https://youtu.be/VLn34k1T_bU 17:55"
+  },
+  {
+   "termo": "tirador de pedido",
+   "fonte": "https://youtu.be/VLn34k1T_bU 20:02 \"envia um orçamento pelo WhatsApp, faz uma reunião só pra apresentar uma proposta\""
+  },
+  {
+   "termo": "brigar por preço",
+   "fonte": "https://youtu.be/VLn34k1T_bU 21:28"
+  },
+  {
+   "termo": "quanto é o metro quadrado",
+   "fonte": "https://youtu.be/VLn34k1T_bU 21:28 \"o cliente chega me procurando: quanto é o metro quadrado?\""
+  },
+  {
+   "termo": "percepção de valor",
+   "fonte": "https://youtu.be/VLn34k1T_bU 21:28"
+  },
+  {
+   "termo": "confiança",
+   "fonte": "https://youtu.be/VLn34k1T_bU 16:29"
+  },
+  {
+   "termo": "indicação",
+   "fonte": "https://youtu.be/VLn34k1T_bU 16:29 \"vai ter boas indicações\""
+  },
+  {
+   "termo": "seu trabalho é comercial",
+   "fonte": "https://youtu.be/6YP6HRi5abg 00:44 \"você fica na obra conversando com o peão… seu trabalho não é esse, seu trabalho é comercial\""
+  },
+  {
+   "termo": "contratar um comercial",
+   "fonte": "https://youtu.be/6YP6HRi5abg 00:44"
+  },
+  {
+   "termo": "margem de lucro",
+   "fonte": "https://youtu.be/6YP6HRi5abg 11:25 \"a margem de lucro é muito pequena e dor de cabeça\""
+  },
+  {
+   "termo": "não sabe quanto lucra",
+   "fonte": "https://youtu.be/6YP6HRi5abg 10:42"
+  }
+ ],
+ "fatos": [
+  {
+   "id": "N-001",
+   "texto": "Pesquisa com mais de 1.900 empresas brasileiras: 12% respondem o 1º contato em menos de 10 minutos (geral, não imobiliário)",
+   "fonte": "https://olhardigital.com.br/2022/04/18/pro/empresas-respondem-primeiro-contato-cliente/",
+   "status": "a-confirmar",
+   "nota": "falta conferir o instituto da pesquisa"
+  }
+ ],
+ "referencias": "Base/roteiro-copy/estudo-fonetico.md (anúncios ativos do segmento), Base/engenharia-reversa/arkom-diagnostico.md",
+ "evidencia": "Conteudo/Estudos/voz-cliente-construtoras/voz-cliente.md",
+ "evitar": [
+  {
+   "termo": "lead",
+   "motivo": "palavra de agência: 0–2 menções por dono de construtora de obra (contagem em voz-cliente.md)"
+  },
+  {
+   "termo": "previsibilidade",
+   "motivo": "palavra de agência (BuildV, Optimize): 0–1 menção nos donos"
+  },
+  {
+   "termo": "tráfego",
+   "motivo": "0–1 menção nos donos"
+  }
+ ]
+}
